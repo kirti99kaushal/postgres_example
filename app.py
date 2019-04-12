@@ -20,7 +20,7 @@ from models import Student_Info
 from models import Schedule
 from models import Timetable
 from models import Syllabus
-
+from models import Calendar
 
 #from models import Holiday
 
@@ -419,6 +419,39 @@ def get_syllabus():
     except Exception as e:
         return(str(e))
 
+
+@app.route("/add/calendar",methods=['GET', 'POST'])
+def add_calendar():
+    if request.method == 'POST':
+        
+        month=request.form.get('month')
+        date=request.form.get('date')
+        event=request.form.get('event')
+        try:
+            calendar=Calendar(
+    
+                month=month,
+                date=date,
+                event=event
+            )
+            
+            db.session.add(calendar)
+            db.session.commit()
+            return "calendar updated. calendar id={}".format(calendar.id)
+        except Exception as e:
+            return(str(e))
+    return render_template("calendar.html")
+
+@app.route("/getcal")
+def get_cal():
+    try:
+        
+        calendar=Calendar.query.all()
+        return render_template("list.html",calendar = calendar)
+
+        return  jsonify([e.serialize() for e in books])
+    except Exception as e:
+        return(str(e))
 
 
 

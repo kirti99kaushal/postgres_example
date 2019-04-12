@@ -153,6 +153,26 @@
             </tr>
          {% endfor %}
       </table>
+   <H1> Academic calendar </H1>
+   <table border = 1>
+         <thead>
+            
+            <td>month</td>
+            <td>date</td>
+            <td>Event</td>
+            
+         </thead>
+         
+         {% for row in calendar %}
+            <tr>
+               
+               <td>{{row["month"]}}</td>
+               <td>{{row["date"]}}</td>
+               <td> {{ row["event"]}}</td>
+             
+            </tr>
+         {% endfor %}
+      </table>
     
    </body>
 </html>
