@@ -439,6 +439,7 @@ def add_calendar():
             db.session.commit()
             print("calendar", calendar)
             message = "calendar updated. calendar id={}".format(calendar.id)
+            session['message'] = message
             print("session is",session)
             return redirect(url_for('get_cal'))
             #return render_template("list.html",calendar = calendar)
@@ -453,6 +454,7 @@ def get_cal():
     try:
         
         calendar=Calendar.query.all()
+        print("message value was previously set to:" +session['message'])
         return render_template("list.html",calendar = calendar)
 
         return  jsonify([e.serialize() for e in books])
