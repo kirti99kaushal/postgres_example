@@ -439,7 +439,7 @@ def add_calendar():
             db.session.commit()
             print("calendar", calendar)
             message = "calendar updated. calendar id={}".format(calendar.id)
-            print(session)
+            print("session is",session)
             return redirect(url_for('get_cal'))
             #return render_template("list.html",calendar = calendar)
 
