@@ -437,8 +437,10 @@ def add_calendar():
             
             db.session.add(calendar)
             db.session.commit()
+            print("calendar", calendar)
             message = "calendar updated. calendar id={}".format(calendar.id)
-            return render_template("list.html",calendar = calendar)
+            return redirect(url_for('get_cal'))
+            #return render_template("list.html",calendar = calendar)
 
             
         except Exception as e:
