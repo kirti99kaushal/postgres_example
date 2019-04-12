@@ -1,5 +1,5 @@
 import os
-from flask import Flask,redirect, url_for, request, jsonify, render_template
+from flask import Flask,session,redirect, url_for, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from sqlalchemy import extract
@@ -439,6 +439,7 @@ def add_calendar():
             db.session.commit()
             print("calendar", calendar)
             message = "calendar updated. calendar id={}".format(calendar.id)
+            print(session)
             return redirect(url_for('get_cal'))
             #return render_template("list.html",calendar = calendar)
 
