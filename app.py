@@ -455,7 +455,7 @@ def get_cal():
         
         calendar=Calendar.query.all()
         print("message value was previously set to:" +session['message'])
-        return render_template("list.html",calendar = calendar)
+        return render_template("list.html",calendar = calendar,message =session['message'])
 
         return  jsonify([e.serialize() for e in books])
     except Exception as e:
