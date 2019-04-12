@@ -437,7 +437,10 @@ def add_calendar():
             
             db.session.add(calendar)
             db.session.commit()
-            return "calendar updated. calendar id={}".format(calendar.id)
+            message = "calendar updated. calendar id={}".format(calendar.id)
+            return render_template("list.html",calendar = calendar)
+
+            
         except Exception as e:
             return(str(e))
     return render_template("calendar.html")
@@ -452,6 +455,8 @@ def get_cal():
         return  jsonify([e.serialize() for e in books])
     except Exception as e:
         return(str(e))
+
+
 
 
 
