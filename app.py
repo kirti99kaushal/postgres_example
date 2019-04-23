@@ -64,28 +64,14 @@ def get_by_id():
     action = req['queryResult']['parameters']['function']
     month = req['queryResult']['parameters']['Months']
     print("action is", action)
-    #print("month is", )
-    #today_month = datetime.today().month
-    #print('today_month', today_month)
-    #months = Holiday.query.filter_by(extract('month', Holiday.datetime) == datetime.today().month.strftime("%B")).all()
-    #print("months is", months)
-
-    #Payment.query.filter(extract('month', Payment.due_date) >= datetime.today().month,)
-
-    #start =datetime.strptime(request.vars.Expected_Possession_Date,"%Y-%m-%d").date()
-    #end   =datetime.strptime(request.vars.Expected_Possession_Date,"%Y-%m-%d").date()
+    
 
     try: 
         if action=='Holiday':
             holiday=Holiday.query.filter_by(start_date = month).all()
             print("holiday is", holiday)
             
-            #holiday_count=Holiday.query.filter_by(month=month).count()
-            #print("count the holidays",holiday_count, len(holiday))
-
-            #print("Month is",row.month)
-            #print("Date is",holiday.date)
-            #print("Event is",holiday.event)
+            
             if(len(holiday)==0):
                  response =  """
                         {0}
