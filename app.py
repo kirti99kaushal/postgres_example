@@ -449,6 +449,75 @@ def get_cal():
     except Exception as e:
         return(str(e))
 
+@app.route("/get5",methods=['GET', 'POST'] )
+def get5():
+    print("helloooo")
+
+    req = request.get_json(silent=True, force=True)
+    action = req['queryResult']['parameters']['Academic_calendar']
+    #month = req['queryResult']['parameters']['Months']
+    print("action is", action)
+    #print("month is", month)
+    #today_month = datetime.today().month
+    #print('today_month', today_month)
+    #months = Holiday.query.filter_by(extract('month', Holiday.datetime) == datetime.today().month.strftime("%B")).all()
+    #print("months is", months)
+
+    #Payment.query.filter(extract('month', Payment.due_date) >= datetime.today().month,)
+
+    #start =datetime.strptime(request.vars.Expected_Possession_Date,"%Y-%m-%d").date()
+    #end   =datetime.strptime(request.vars.Expected_Possession_Date,"%Y-%m-%d").date()
+
+    try: 
+        if action=='Academic_calendar':
+            #holiday=Holiday.query.filter_by(month=month).all()
+            
+            #holiday_count=Holiday.query.filter_by(month=month).count()
+            #print("count the holidays",holiday_count, len(holiday))
+
+            #print("Month is",row.month)
+            #print("Date is",holiday.date)
+            #print("Event is",holiday.event)
+            if(len(holiday)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("There are no holidays in month of "+ month)
+                 reply = {"fulfillmentText": response}
+                 print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in calendar:
+
+                i = i + 1
+                print("print rows", row.id, row.month, row.date, row.event)
+
+                Result= 'There is a holiday in the month of '+ str(row.month) + ' on'+str(row.date) + 'for the occasion ' + str(row.event) + '  '  
+           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
+
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
+            return jsonify(reply)
+        else:
+
+    
+            response =  """
+                    Response : {0}
+                    """.format("action is not valid")
+            reply = {"fulfillmentText": response,}
+        #return jsonify(holiday.serialize())
+    except Exception as e:
+        return(str(e))
+
 
 
 
