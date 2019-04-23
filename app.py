@@ -454,7 +454,7 @@ def get5():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
-    action = req['queryResult']['parameters']['Academic_calendar']
+    action = req['queryResult']['parameters']['calendar']
     #month = req['queryResult']['parameters']['Months']
     print("action is", action)
     #print("month is", month)
@@ -469,7 +469,7 @@ def get5():
     #end   =datetime.strptime(request.vars.Expected_Possession_Date,"%Y-%m-%d").date()
 
     try: 
-        if action=='Academic_calendar':
+        if action=='Academic calendar':
             #holiday=Holiday.query.filter_by(month=month).all()
             
             #holiday_count=Holiday.query.filter_by(month=month).count()
