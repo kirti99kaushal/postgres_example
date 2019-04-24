@@ -444,40 +444,29 @@ def get_cal():
     except Exception as e:
         return(str(e))
 
-@app.route("/get5",methods=['GET', 'POST'] )
-def get5():
+@app.route("/get",methods=['GET', 'POST'] )
+def get_by_id():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
-    action = req['queryResult']['parameters']['calendar']
+    action = req['queryResult']['parameters']['function']
     #month = req['queryResult']['parameters']['Months']
     print("action is", action)
-    #print("month is", month)
-    #today_month = datetime.today().month
-    #print('today_month', today_month)
-    #months = Holiday.query.filter_by(extract('month', Holiday.datetime) == datetime.today().month.strftime("%B")).all()
-    #print("months is", months)
-
-    #Payment.query.filter(extract('month', Payment.due_date) >= datetime.today().month,)
-
-    #start =datetime.strptime(request.vars.Expected_Possession_Date,"%Y-%m-%d").date()
-    #end   =datetime.strptime(request.vars.Expected_Possession_Date,"%Y-%m-%d").date()
-
+    
     try: 
-        if action=='Academic calendar':
+        if action=='Academic Calendar':
             calendar=Calendar.query.all()
             
-            #holiday_count=Holiday.query.filter_by(month=month).count()
-            #print("count the holidays",holiday_count, len(holiday))
+            
 
             #print("Month is",row.month)
             #print("Date is",holiday.date)
-            #print("Event is",holiday.event)2
+            #print("Event is",holiday.event)
             if(len(calendar)==0):
                  response =  """
                         {0}
                     
-                        """.format("There are no holidays  ")
+                        """.format("There are no holidays in month of "+ month)
                  reply = {"fulfillmentText": response}
                  print("hi there")
                  return jsonify(reply)
@@ -512,10 +501,6 @@ def get5():
         #return jsonify(holiday.serialize())
     except Exception as e:
         return(str(e))
-
-
-
-
 
 
 if __name__ == '__main__':
