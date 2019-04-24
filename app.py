@@ -449,7 +449,7 @@ def get2():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
-    action = req['queryResult']['parameters']['calendar']
+    action = req['queryResult']['parameters']['function2']
     #month = req['queryResult']['parameters']['Months']
     print("action is", action)
     
