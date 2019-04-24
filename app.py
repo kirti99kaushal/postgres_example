@@ -265,7 +265,7 @@ def get1():
 
     try: 
         if action=='Exams_schedule':
-            schedule=Schedule.query.filter_by(course=course , semester=sem_no, branch=branch).all()
+            schedule=Schedule.query.filter_by(course=course , semester=semester, branch=branch).all()
             
             
             if(len(schedule)==0):
