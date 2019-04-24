@@ -502,6 +502,68 @@ def get2():
     except Exception as e:
         return(str(e))
 
+@app.route("/get3",methods=['GET', 'POST'] )
+def get3():
+    print("helloooo")
+
+    req = request.get_json(silent=True, force=True)
+    print(req)
+    action = req['queryResult']['parameters']['Syllabus']
+    course = req['queryResult']['parameters']['Courses']
+    semester = req['queryResult']['parameters']['number']
+    branch = req['queryResult']['parameters']['Branch']
+    print("action is", action)
+    print("course is", course)
+   
+
+    try: 
+        if action=='Syllabus':
+            syllabus=Syllabus.query.filter_by(course=course , semester=semester, branch=branch).all()
+            
+            
+            if(len(schedule)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("Syllabus updation is pending for now. Please check after some time")
+                 reply = {"fulfillmentText": response}
+                 #print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in syllabus:
+
+                i = i + 1
+                print("print rows", row.date, row.sub_code, row.subject)
+
+                Result=  str(row.sub_code)+'  '+str(row.subject) +' ' + str(row.units) + '  '  
+          
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
+            return jsonify(reply)
+        else:
+
+    
+            response =  """
+                    Response : {0}
+                    """.format("action is not valid")
+            reply = {"fulfillmentText": response,}
+        
+    except Exception as e:
+        return(str(e))
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run()
