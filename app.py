@@ -478,7 +478,7 @@ def get5():
             #print("Month is",row.month)
             #print("Date is",holiday.date)
             #print("Event is",holiday.event)
-            if(len(holiday)==0):
+            if(len(calendar)==0):
                  response =  """
                         {0}
                     
