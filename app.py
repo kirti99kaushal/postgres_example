@@ -521,7 +521,7 @@ def get3():
             syllabus=Syllabus.query.filter_by(course=course , semester=semester, branch=branch).all()
             
             
-            if(len(schedule)==0):
+            if(len(syllabus)==0):
                  response =  """
                         {0}
                     
