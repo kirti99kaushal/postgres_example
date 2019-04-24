@@ -263,7 +263,7 @@ def get1():
    
 
     try: 
-        if action=='Exams_schedule.Exams_schedule-custom':
+        if action=='Exams_schedule':
             schedule=Schedule.query.filter_by(course=course , semester=sem_no, branch=branch).all()
             
             #holiday_count=Holiday.query.filter_by(month=month).count()
@@ -289,7 +289,7 @@ def get1():
                 i = i + 1
                 print("print rows", row.date, row.sub_code, row.subject)
 
-                Result= 'There is a holiday in the month of '+ str(row.date) + ' on'+str(row.sub_code) + 'for the occasion ' + str(row.subject) + '  '  
+                Result=  str(row.date)+str(row.sub_code)  + str(row.subject) + '  '  
            # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
 
                 print("result is", Result)
