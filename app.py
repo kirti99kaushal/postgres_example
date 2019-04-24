@@ -470,19 +470,19 @@ def get5():
 
     try: 
         if action=='Academic calendar':
-            #holiday=Holiday.query.filter_by(month=month).all()
+            calendar=Calendar.query.all()
             
             #holiday_count=Holiday.query.filter_by(month=month).count()
             #print("count the holidays",holiday_count, len(holiday))
 
             #print("Month is",row.month)
             #print("Date is",holiday.date)
-            #print("Event is",holiday.event)
+            #print("Event is",holiday.event)2
             if(len(calendar)==0):
                  response =  """
                         {0}
                     
-                        """.format("There are no holidays in month of "+ month)
+                        """.format("There are no holidays  ")
                  reply = {"fulfillmentText": response}
                  print("hi there")
                  return jsonify(reply)
@@ -495,7 +495,7 @@ def get5():
                 i = i + 1
                 print("print rows", row.id, row.month, row.date, row.event)
 
-                Result= 'There is a holiday in the month of '+ str(row.month) + ' on'+str(row.date) + 'for the occasion ' + str(row.event) + '  '  
+                Result=  str(row.month) +str(row.date)  + str(row.event) + '  '  
            # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
 
                 print("result is", Result)
