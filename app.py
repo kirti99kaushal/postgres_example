@@ -256,7 +256,7 @@ def get1():
     req = request.get_json(silent=True, force=True)
     action = req['queryResult']['parameters']['function1']
     course = req['queryResult']['parameters']['Courses']
-    sem_no = req['queryResult']['parameters']['sem_no']
+    semester = req['queryResult']['parameters']['number']
     branch = req['queryResult']['parameters']['Branch']
     print("action is", action)
     print("course is", course)
@@ -266,12 +266,7 @@ def get1():
         if action=='Exams_schedule':
             schedule=Schedule.query.filter_by(course=course , semester=sem_no, branch=branch).all()
             
-            #holiday_count=Holiday.query.filter_by(month=month).count()
-            #print("count the holidays",holiday_count, len(holiday))
-
-            #print("Month is",row.month)
-            #print("Date is",holiday.date)
-            #print("Event is",holiday.event)
+            
             if(len(schedule)==0):
                  response =  """
                         {0}
@@ -290,8 +285,7 @@ def get1():
                 print("print rows", row.date, row.sub_code, row.subject)
 
                 Result=  str(row.date)+str(row.sub_code)  + str(row.subject) + '  '  
-           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
-
+          
                 print("result is", Result)
                 response = response + """
                         {0}
@@ -308,7 +302,7 @@ def get1():
                     Response : {0}
                     """.format("action is not valid")
             reply = {"fulfillmentText": response,}
-        #return jsonify(holiday.serialize())
+        
     except Exception as e:
         return(str(e))
 
