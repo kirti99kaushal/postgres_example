@@ -254,6 +254,7 @@ def get1():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
+    print(req)
     action = req['queryResult']['parameters']['function1']
     course = req['queryResult']['parameters']['Courses']
     semester = req['queryResult']['parameters']['number']
