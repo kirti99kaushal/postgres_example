@@ -634,7 +634,7 @@ def add_event():
                 event=event
             )
             
-            db.session.add(event)
+            db.session.add(events)
             db.session.commit()
             return "Event added. event id={}".format(events.id)
         except Exception as e:
@@ -642,7 +642,16 @@ def add_event():
     return render_template("event.html")
 
 
+@app.route("/getevent")
+def get_event():
+    try:
+        
+        events=Event.query.all()
+        return render_template("list.html",events = events)
 
+        return  jsonify([e.serialize() for e in books])
+    except Exception as e:
+        return(str(e))
 
 
 if __name__ == '__main__':
