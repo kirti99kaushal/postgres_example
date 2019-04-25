@@ -502,8 +502,8 @@ def get2():
     except Exception as e:
         return(str(e))
 
-@app.route("/get3",methods=['GET', 'POST'] )
-def get3():
+@app.route("/get4",methods=['GET', 'POST'] )
+def get4():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
