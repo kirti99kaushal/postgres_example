@@ -360,7 +360,7 @@ def get_timetable():
         return  jsonify([e.serialize() for e in books])
     except Exception as e:
         return(str(e))
-@app.route("/get33")
+@app.route("/gettt")
 def test():
     return render_template("test1.html")
 
