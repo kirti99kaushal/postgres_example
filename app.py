@@ -562,6 +562,86 @@ def get3():
 
 
 
+@app.route("/get3",methods=['GET', 'POST'] )
+def get3():
+    print("helloooo")
+
+    req = request.get_json(silent=True, force=True)
+    print(req)
+    action = req['queryResult']['parameters']['function2']
+    course = req['queryResult']['parameters']['Courses']
+    semester = req['queryResult']['parameters']['number']
+    branch = req['queryResult']['parameters']['Branch']
+    print("action is", action)
+    print("course is", course)
+   
+
+    try: 
+        if action=='Timetable':
+            timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
+            
+            
+            if(len(timetable)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("Timetable updation is pending for now. Please check after some time")
+                 reply = {"fulfillmentText": response}
+                 #print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in timetable:
+
+                i = i + 1
+                print("print rows", row.timing, row.monday, row.tuesday)
+
+                Result=  str(row.timing)+'  '+str(row.monday) +' ' + str(row.tuesday) + '  '  
+          
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
+            return jsonify(reply)
+        else:
+
+    
+            response =  """
+                    Response : {0}
+                    """.format("action is not valid")
+            reply = {"fulfillmentText": response,}
+        
+    except Exception as e:
+        return(str(e))
+@app.route("/add/event",methods=['GET', 'POST'])
+def add_event():
+    if request.method == 'POST':
+        
+        start_date=request.form.get('start_date')
+        end_date=request.form.get('end_date')
+        event=request.form.get('event')
+        try:
+            events=Event(
+    
+                start_date=start_date,
+                end_date=end_date,
+                event=event
+            )
+            
+            db.session.add(event)
+            db.session.commit()
+            return "Event added. event id={}".format(events.id)
+        except Exception as e:
+            return(str(e))
+    return render_template("event.html")
+
+
 
 
 
