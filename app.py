@@ -250,8 +250,8 @@ def get_schedule():
     except Exception as e:
         return(str(e))
 
-@app.route("/get1",methods=['GET', 'POST'] )
-def get1():
+@app.route("/schedule",methods=['GET', 'POST'] )
+def schedule():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
@@ -445,8 +445,8 @@ def get_cal():
     except Exception as e:
         return(str(e))
 
-@app.route("/get2",methods=['GET', 'POST'] )
-def get2():
+@app.route("/calendar",methods=['GET', 'POST'] )
+def calendar():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
@@ -503,8 +503,8 @@ def get2():
     except Exception as e:
         return(str(e))
 
-@app.route("/get4",methods=['GET', 'POST'] )
-def get4():
+@app.route("/syllabus",methods=['GET', 'POST'] )
+def syllabus():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
@@ -563,8 +563,8 @@ def get4():
 
 
 
-@app.route("/get3",methods=['GET', 'POST'] )
-def get3():
+@app.route("/timet",methods=['GET', 'POST'] )
+def timet():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
