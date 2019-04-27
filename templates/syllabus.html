@@ -115,7 +115,7 @@ button:hover {
     </form>
   </div>
 </nav>
-<form id="regForm" action="/add/syllabus" method="post">
+<form id="regForm" action="/add/syllabus" method="post" class="was-validated">
   <h1>Syllabus:</h1>
   <!-- One "tab" for each step in the form: -->
   <div class="form-group">
@@ -125,7 +125,7 @@ button:hover {
                                 <label for="course">course</label>
                               
                                 
-                                <input list="course" placeholder="course" name="course">
+                                <input list="course" class = "form-control" placeholder="course" name="course" required>
                                 <datalist id="course">
                                 <option value="BCA">
                                 <option value="B.Tech">
@@ -133,12 +133,14 @@ button:hover {
                                 <option value="MCA">
                                 
                                 </datalist>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                     
                     <div class="col-sm-6">
                     
                                 <label for="branch">branch</label>
-                                <input list="branch" placeholder="branch" name="branch">
+                                <input list="branch" class = "form-control" placeholder="branch" name="branch" required>
                                 <datalist id="branch">
                                 <option value="Electrical">
                                 <option value="Electronics">
@@ -148,13 +150,15 @@ button:hover {
                                 <option value="N/A">
                                 
                                 </datalist>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
           </div>
 
           <div class="row">
                     <div class="col-sm-6">
                                 <label for="semester">semester</label>
-                                <input list="semester" placeholder="semester" name="semester">
+                                <input list="semester" class = "form-control" placeholder="semester" name="semester" required>
                                 <datalist id="semester">
                            
                                 <option>I</option>
@@ -167,13 +171,17 @@ button:hover {
                                 <option>VIII</option>
                                 
                                 </datalist>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                     
                     <div class="col-sm-6">
 
 
                                 <label for="sub_code">subject_code</label>
-                                <input class="form-control " type="text" placeholder="sub_code" id="sub_code" name="sub_code">
+                                <input class="form-control " type="text" placeholder="sub_code" id="sub_code" name="sub_code"  required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
           </div>
 
@@ -181,13 +189,17 @@ button:hover {
                     <div class="col-sm-6">
 
                                 <label for="subject">Subject</label>
-                                <input class="form-control " type="text" placeholder="subject" id="subject" name="subject">
+                                <input class="form-control " type="text" placeholder="subject" id="subject" name="subject" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
 
                     <div class="col-sm-6">                    
 
                                 <label for="units">Units</label>
-                                <input class="form-control " type="text" placeholder="units" id="units" name="units">
+                                <input class="form-control " type="text" placeholder="units" id="units" name="units" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
 
           </div>
