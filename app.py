@@ -428,9 +428,9 @@ def calendar():
     print("action is", action)
     
     try: 
-        if action=='Academic Calendar':
+        if action=='Academic_Calendar':
             calendar=Calendar.query.all()
-            
+            print(calendar)
             
 
             #print("Month is",row.month)
@@ -624,6 +624,62 @@ def get_event():
         return render_template("list.html",events = events)
 
         return  jsonify([e.serialize() for e in books])
+    except Exception as e:
+        return(str(e))
+
+@app.route("/get",methods=['GET', 'POST'] )
+def get_by_id():
+    print("helloooo")
+    from models import Holiday
+    req = request.get_json(silent=True, force=True)
+    action = req['queryResult']['parameters']['event']
+    month = req['queryResult']['parameters']['Months']
+    print("action is", action)
+    
+
+    try: 
+        if action=='Event':
+            event=Event.query.filter_by(start_date = month).all()
+            print("Event is", event)
+            
+            
+            if(len(event)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("There are no events in month of "+ month)
+                 reply = {"fulfillmentText": response}
+                 print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in events:
+
+                i = i + 1
+                print("print rows", row.id, row.start_date, row.end_date, row.event)
+
+                Result= 'There is an event in the month of '+ str(month) + ' on'+str(row.start_date) + 'for the occasion ' + str(row.event) + '  '  
+           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
+
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
+            return jsonify(reply)
+        else:
+
+    
+            response =  """
+                    Response : {0}
+                    """.format("action is not valid")
+            reply = {"fulfillmentText": response,}
+        #return jsonify(holiday.serialize())
     except Exception as e:
         return(str(e))
 
