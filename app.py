@@ -409,7 +409,7 @@ def get_cal():
     try:
         
         calendar=Calendar.query.all()
-        print("message value was previously set to:" +session['message'])
+        #print("message value was previously set to:" +session['message'])
         message = session['message']
         session['message'] = ''
         return render_template("list.html",calendar = calendar,message =message)
