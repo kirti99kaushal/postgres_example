@@ -464,7 +464,7 @@ def calendar():
                 
                 reply = {"fulfillmentText": response,}
 
-            return jsonify(reply)
+            
         else:
 
     
@@ -472,6 +472,7 @@ def calendar():
                     Response : {0}
                     """.format("action is not valid")
             reply = {"fulfillmentText": response,}
+        return jsonify(reply)
         #return jsonify(holiday.serialize())
     except Exception as e:
         return(str(e))
