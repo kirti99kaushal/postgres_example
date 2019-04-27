@@ -627,8 +627,8 @@ def get_event():
     except Exception as e:
         return(str(e))
 
-@app.route("/get",methods=['GET', 'POST'] )
-def get_by_id():
+@app.route("/events",methods=['GET', 'POST'] )
+def getevents():
     print("helloooo")
     from models import Holiday
     req = request.get_json(silent=True, force=True)
