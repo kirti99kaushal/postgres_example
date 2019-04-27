@@ -440,7 +440,7 @@ def calendar():
                  response =  """
                         {0}
                     
-                        """.format("There are no holidays in month of "+ month)
+                        """.format("No calendar updates")
                  reply = {"fulfillmentText": response}
                  print("hi there")
                  return jsonify(reply)
