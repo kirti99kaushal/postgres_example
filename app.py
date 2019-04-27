@@ -186,33 +186,6 @@ def get_data():
 
 
 
-@app.route("/get/<name_>" )
-
-def get_by_name(name_):
-
-    #req = request.get_json(silent=True, force=True)
-
-    #print("in comin grequest",req)
-
-    #action = req['queryResult']['parameters']['Holiday']
-
-    #month = req['queryResult']['parameters']['Months']
-
-    try:
-
-        table=Holiday.query.filter_by(name=name_).first()
-
-        print("print rows", table)
-
-        return (table)
-
-        #return jsonify(table.serialize())
-
-    except Exception as e:
-
-
-        return(str(e))
-
 
 @app.route("/add/schedule",methods=['GET', 'POST'])
 def add_schedule():
@@ -351,7 +324,7 @@ def add_timetable():
 
 
 
-@app.route("/get/timetable")
+@app.route("/gettimetable")
 def get_timetable():
     try:
         
@@ -599,7 +572,7 @@ def timet():
                 i = i + 1
                 print("print rows", row.timing, row.monday, row.tuesday)
 
-                Result=  str(row.timing)+'  '+str(row.monday) +' ' + str(row.tuesday) + '  '  
+                Result=  str(row.timing)+'  '+str(row.monday) +' ' + str(row.tuesday) + '  ' + str(row.wednesday) + '  ' + str(row.thursda+ str(row.friday) + '  ' + '  ' + str(row.saturday) + '  '  
           
                 print("result is", Result)
                 response = response + """
