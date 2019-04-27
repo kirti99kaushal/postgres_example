@@ -229,7 +229,7 @@ def schedule():
 
     req = request.get_json(silent=True, force=True)
     print(req)
-    action = req['queryResult']['parameters']['schedule']
+    action = req['queryResult']['parameters']['schedule1']
     course = req['queryResult']['parameters']['Courses']
     semester = req['queryResult']['parameters']['number']
     branch = req['queryResult']['parameters']['Branch']
