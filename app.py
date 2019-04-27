@@ -572,7 +572,7 @@ def timet():
                 i = i + 1
                 print("print rows", row.timing, row.monday, row.tuesday)
 
-                Result=  str(row.timing)+'  '+str(row.monday) +' ' + str(row.tuesday) + '  ' + str(row.wednesday) + '  ' + str(row.thursda+ str(row.friday) + '  ' + '  ' + str(row.saturday) + '  '  
+                Result=  str(row.timing)+'  '+str(row.monday) +'  ' + str(row.tuesday) + '  ' + str(row.wednesday) + '  ' + str(row.thursday)+ '  ' + str(row.friday) + '  '  + str(row.saturday) + '  '  
           
                 print("result is", Result)
                 response = response + """
