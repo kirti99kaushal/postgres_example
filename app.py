@@ -632,7 +632,7 @@ def getevents():
     print("helloooo")
     from models import Holiday
     req = request.get_json(silent=True, force=True)
-    action = req['queryResult']['parameters']['event']
+    action = req['queryResult']['parameters']['function5']
     month = req['queryResult']['parameters']['Months']
     print("action is", action)
     
