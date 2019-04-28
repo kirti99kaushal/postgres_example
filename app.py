@@ -915,7 +915,7 @@ def getaction():
         response =  """
                     Response : {0}
                     """.format("action is not valid")
-            reply = {"fulfillmentText": response,}
+        reply = {"fulfillmentText": response,}
         return jsonify(reply)
         return(str(e))
 
