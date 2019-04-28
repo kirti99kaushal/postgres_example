@@ -113,12 +113,6 @@ def get_by_id():
     except Exception as e:
         return(str(e))
 
-@app.route('/home')
-def home():
-if not session.get('logged_in'):
-return render_template('login.html')
-else:
-return "Hello Boss!"
 
 
 @app.route("/add/form",methods=['GET', 'POST'])
