@@ -910,6 +910,7 @@ def getaction():
                         """.format(Result,)
                 
                 reply = {"fulfillmentText": response,}
+            return jsonify(reply)
 
     except Exception as e:
         response =  """
