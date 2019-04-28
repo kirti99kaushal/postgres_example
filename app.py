@@ -687,38 +687,7 @@ def getevents():
     except Exception as e:
         return(str(e))
 
-        if action=='Timetable':
-            timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
-            
-            
-            if(len(timetable)==0):
-                 response =  """
-                        {0}
-                    
-                        """.format("Timetable updation is pending for now. Please check after some time")
-                 reply = {"fulfillmentText": response}
-                 #print("hi there")
-                 return jsonify(reply)
-            i = 0
-            Result=''
-            response=''
-            reply= ''
-            for row in timetable:
-
-                i = i + 1
-                print("print rows", row.timing, row.monday, row.tuesday)
-
-                Result=  str(row.timing)+'  '+str(row.monday) +'  ' + str(row.tuesday) + '  ' + str(row.wednesday) + '  ' + str(row.thursday)+ '  ' + str(row.friday) + '  '  + str(row.saturday) + '  '  
-          
-                print("result is", Result)
-                response = response + """
-                        {0}
-                    
-                        """.format(Result,)
-                
-                reply = {"fulfillmentText": response,}
-
-            return jsonify(reply)
+        
 
 @app.route("/action",methods=['GET', 'POST'] )
 def getaction():
@@ -806,7 +775,148 @@ def getaction():
                 reply = {"fulfillmentText": response,}
 
             return jsonify(reply)
+
+        if action=='Holiday':
+            holiday=Holiday.query.filter_by(start_date = month).all()
+            print("holiday is", holiday)
+            
+            
+            if(len(holiday)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("There are no holidays in month of "+ month)
+                 reply = {"fulfillmentText": response}
+                 print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in holiday:
+
+                i = i + 1
+                print("print rows", row.id, row.start_date, row.end_date, row.event)
+
+                Result= 'There is a holiday in the month of '+ str(month) + ' on'+str(row.start_date) + 'for the occasion ' + str(row.event) + '  '  
+           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
+
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
+            return jsonify(reply)
+
+        if action=='Timetable':
+            timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
+            
+            
+            if(len(timetable)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("Timetable updation is pending for now. Please check after some time")
+                 reply = {"fulfillmentText": response}
+                 #print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in timetable:
+
+                i = i + 1
+                print("print rows", row.timing, row.monday, row.tuesday)
+
+                Result=  str(row.timing)+'  '+str(row.monday) +'  ' + str(row.tuesday) + '  ' + str(row.wednesday) + '  ' + str(row.thursday)+ '  ' + str(row.friday) + '  '  + str(row.saturday) + '  '  
+          
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
+            return jsonify(reply)
+
+        if action=='Exams_schedule':
+            schedule=Schedule.query.filter_by(course=course , semester=semester, branch=branch).all()
+            
+            
+            if(len(schedule)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("Schedule updation is pending for now. Please check after some time")
+                 reply = {"fulfillmentText": response}
+                 #print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in schedule:
+
+                i = i + 1
+                print("print rows", row.date, row.sub_code, row.subject)
+
+                Result=  str(row.date)+str(row.sub_code)  + str(row.subject) + '  '  
+          
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
+            return jsonify(reply)
+
+        if action=='Academic_Calendar':
+            calendar=Calendar.query.all()
+            print(calendar)
+            
+
+            
+            if(len(calendar)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("No calendar updates")
+                 reply = {"fulfillmentText": response}
+                 print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in calendar:
+
+                i = i + 1
+                print("print rows", row.id, row.month, row.date, row.event)
+
+                Result=  str(row.month) +str(row.date)  + str(row.event) + '  '  
+           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
+
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
     except Exception as e:
+        response =  """
+                    Response : {0}
+                    """.format("action is not valid")
+            reply = {"fulfillmentText": response,}
+        return jsonify(reply)
         return(str(e))
 
         
