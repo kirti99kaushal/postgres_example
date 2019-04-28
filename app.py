@@ -693,21 +693,85 @@ def getevents():
 def getaction():
     print("helloooo")
     #from models import Holiday
-    function = ""
-    Months = ""
-    Courses = ""
-    number = ""
-    Branch = ""
+    
     req = request.get_json(silent=True, force=True)
     action = req['queryResult']['parameters']['function']
     month = req['queryResult']['parameters']['Months']
-    course = req['queryResult']['parameters']['Courses']
-    semester = req['queryResult']['parameters']['number']
-    branch = req['queryResult']['parameters']['Branch']
+    
     print("action is", action)
     
 
     try: 
+        if action=='Holiday':
+            holiday=Holiday.query.filter_by(start_date = month).all()
+            print("holiday is", holiday)
+            
+            
+            if(len(holiday)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("There are no holidays in month of "+ month)
+                 reply = {"fulfillmentText": response}
+                 print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in holiday:
+
+                i = i + 1
+                print("print rows", row.id, row.start_date, row.end_date, row.event)
+
+                Result= 'There is a holiday in the month of '+ str(month) + ' on'+str(row.start_date) + 'for the occasion ' + str(row.event) + '  '  
+           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
+
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
+            return jsonify(reply)
+
+        if action=='Academic_Calendar':
+            calendar=Calendar.query.all()
+            print(calendar)
+            
+
+            
+            if(len(calendar)==0):
+                 response =  """
+                        {0}
+                    
+                        """.format("No calendar updates")
+                 reply = {"fulfillmentText": response}
+                 print("hi there")
+                 return jsonify(reply)
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in calendar:
+
+                i = i + 1
+                print("print rows", row.id, row.month, row.date, row.event)
+
+                Result=  str(row.month) +str(row.date)  + str(row.event) + '  '  
+           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
+
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+            return jsonify(reply)
+
         if action=='Event':
             event=Event.query.filter_by(start_date = month).all()
             print("Event is", event)
@@ -743,6 +807,10 @@ def getaction():
 
             return jsonify(reply)
 
+        course = req['queryResult']['parameters']['Courses']
+        semester = req['queryResult']['parameters']['number']
+        branch = req['queryResult']['parameters']['Branch']
+
         if action=='Syllabus':
             syllabus=Syllabus.query.filter_by(course=course , semester=semester, branch=branch).all()
             
@@ -776,40 +844,7 @@ def getaction():
 
             return jsonify(reply)
 
-        if action=='Holiday':
-            holiday=Holiday.query.filter_by(start_date = month).all()
-            print("holiday is", holiday)
-            
-            
-            if(len(holiday)==0):
-                 response =  """
-                        {0}
-                    
-                        """.format("There are no holidays in month of "+ month)
-                 reply = {"fulfillmentText": response}
-                 print("hi there")
-                 return jsonify(reply)
-            i = 0
-            Result=''
-            response=''
-            reply= ''
-            for row in holiday:
-
-                i = i + 1
-                print("print rows", row.id, row.start_date, row.end_date, row.event)
-
-                Result= 'There is a holiday in the month of '+ str(month) + ' on'+str(row.start_date) + 'for the occasion ' + str(row.event) + '  '  
-           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
-
-                print("result is", Result)
-                response = response + """
-                        {0}
-                    
-                        """.format(Result,)
-                
-                reply = {"fulfillmentText": response,}
-
-            return jsonify(reply)
+        
 
         if action=='Timetable':
             timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
@@ -877,40 +912,7 @@ def getaction():
 
             return jsonify(reply)
 
-        if action=='Academic_Calendar':
-            calendar=Calendar.query.all()
-            print(calendar)
-            
-
-            
-            if(len(calendar)==0):
-                 response =  """
-                        {0}
-                    
-                        """.format("No calendar updates")
-                 reply = {"fulfillmentText": response}
-                 print("hi there")
-                 return jsonify(reply)
-            i = 0
-            Result=''
-            response=''
-            reply= ''
-            for row in calendar:
-
-                i = i + 1
-                print("print rows", row.id, row.month, row.date, row.event)
-
-                Result=  str(row.month) +str(row.date)  + str(row.event) + '  '  
-           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
-
-                print("result is", Result)
-                response = response + """
-                        {0}
-                    
-                        """.format(Result,)
-                
-                reply = {"fulfillmentText": response,}
-            return jsonify(reply)
+        
 
     except Exception as e:
         response =  """
