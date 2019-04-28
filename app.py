@@ -724,6 +724,11 @@ def getevents():
 def getaction():
     print("helloooo")
     #from models import Holiday
+    function = ""
+    Months = ""
+    Courses = ""
+    number = ""
+    Branch = ""
     req = request.get_json(silent=True, force=True)
     action = req['queryResult']['parameters']['function']
     month = req['queryResult']['parameters']['Months']
