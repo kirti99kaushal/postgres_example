@@ -116,12 +116,8 @@ def get_by_id():
 
 
 @app.route("/add/form",methods=['GET', 'POST'])
-def add_book_form():
-
-    
+def add_book_form():    
     if request.method == 'POST':
-
-            
         start_date=request.form.get('start_date')
         end_date=request.form.get('end_date')
         event=request.form.get('event')
@@ -805,6 +801,9 @@ def getaction():
                 reply = {"fulfillmentText": response,}
 
             return jsonify(reply)
+    except Exception as e:
+        return(str(e))
+
         
 
 
