@@ -806,7 +806,7 @@ def getaction():
                 reply = {"fulfillmentText": response,}
 
             return jsonify(reply)
-
+        action = req['queryResult']['parameters']['function']
         course = req['queryResult']['parameters']['Courses']
         semester = req['queryResult']['parameters']['number']
         branch = req['queryResult']['parameters']['Branch']
