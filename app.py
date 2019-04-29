@@ -814,7 +814,7 @@ def getaction():
             return jsonify(reply)
         
 
-        if action=='Syllabus':
+        if action=='Syllabus.Syllabus-custom.Syllabus-custom-custom':
             
             course = req['queryResult']['parameters']['Courses']
             semester = req['queryResult']['parameters']['sem_no']
