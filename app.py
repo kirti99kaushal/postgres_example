@@ -741,7 +741,7 @@ def getaction():
 
         if action=='Academic_Calendar':
             
-            month = req['queryResult']['parameters']['Months']
+            
             calendar=Calendar.query.all()
             print(calendar)
             
