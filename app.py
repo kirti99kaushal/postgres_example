@@ -692,17 +692,19 @@ def getevents():
 @app.route("/action",methods=['GET', 'POST'] )
 def getaction():
     print("helloooo")
-    #from models import Holiday
+    
     
     req = request.get_json(silent=True, force=True)
     action = req['queryResult']['parameters']['function']
-    month = req['queryResult']['parameters']['Months']
     
-    print("action is", action)
+    
+    #print("action is", action)
     
 
     try: 
         if action=='Holiday':
+            
+            month = req['queryResult']['parameters']['Months']
             holiday=Holiday.query.filter_by(start_date = month).all()
             print("holiday is", holiday)
             
@@ -738,6 +740,8 @@ def getaction():
             return jsonify(reply)
 
         if action=='Academic_Calendar':
+            
+            month = req['queryResult']['parameters']['Months']
             calendar=Calendar.query.all()
             print(calendar)
             
@@ -773,6 +777,8 @@ def getaction():
             return jsonify(reply)
 
         if action=='Event':
+            
+            month = req['queryResult']['parameters']['Months']
             event=Event.query.filter_by(start_date = month).all()
             print("Event is", event)
             
@@ -806,12 +812,13 @@ def getaction():
                 reply = {"fulfillmentText": response,}
 
             return jsonify(reply)
-        action = req['queryResult']['parameters']['function']
-        course = req['queryResult']['parameters']['Courses']
-        semester = req['queryResult']['parameters']['number']
-        branch = req['queryResult']['parameters']['Branch']
+        
 
         if action=='Syllabus':
+            
+            course = req['queryResult']['parameters']['Courses']
+            semester = req['queryResult']['parameters']['number']
+            branch = req['queryResult']['parameters']['Branch']
             syllabus=Syllabus.query.filter_by(course=course , semester=semester, branch=branch).all()
             
             
@@ -847,6 +854,9 @@ def getaction():
         
 
         if action=='Timetable':
+            course = req['queryResult']['parameters']['Courses']
+            semester = req['queryResult']['parameters']['number']
+            branch = req['queryResult']['parameters']['Branch']
             timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
             
             
@@ -880,6 +890,9 @@ def getaction():
             return jsonify(reply)
 
         if action=='Exams_schedule':
+            course = req['queryResult']['parameters']['Courses']
+            semester = req['queryResult']['parameters']['number']
+            branch = req['queryResult']['parameters']['Branch']
             schedule=Schedule.query.filter_by(course=course , semester=semester, branch=branch).all()
             
             
