@@ -642,7 +642,7 @@ def getevents():
                     """.format(Result,)
                 
             reply = {"fulfillmentText": response,}
-        return jsonify(reply)
+        #return jsonify(reply)
             
 
             
@@ -680,6 +680,7 @@ def getaction():
         if action=='Event':
             print("action is",action)
             reply = getevents()
+            return jsonify(reply)
             
 
             
