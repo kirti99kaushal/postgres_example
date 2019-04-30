@@ -101,7 +101,7 @@ def get_by_id():
                 
                 reply = {"fulfillmentText": response,}
 
-            #return jsonify(reply)
+            return jsonify(reply)
         
     except Exception as e:
         return(str(e))
@@ -264,7 +264,7 @@ def schedule():
                 
                 reply = {"fulfillmentText": response,}
 
-            #return jsonify(reply)
+            return jsonify(reply)
         
         
     except Exception as e:
@@ -452,6 +452,7 @@ def calendar():
                         """.format(Result,)
                 
                 reply = {"fulfillmentText": response,}
+            return jsonify(reply)
 
             
         
@@ -503,6 +504,7 @@ def syllabus():
                         """.format(Result,)
                 
                 reply = {"fulfillmentText": response,}
+            return jsonify(reply)
 
             
         
@@ -554,17 +556,12 @@ def timet():
                     """.format(Result,)
                 
             reply = {"fulfillmentText": response,}
+        return jsonify(reply)
 
-            #return jsonify(reply)
             
-            
-            
-        
-            
-        
-        
     except Exception as e:
         return(str(e))
+
 @app.route("/add/event",methods=['GET', 'POST'])
 def add_event():
     if request.method == 'POST':
@@ -645,7 +642,7 @@ def getevents():
                     """.format(Result,)
                 
             reply = {"fulfillmentText": response,}
-        
+        return jsonify(reply)
             
 
             
@@ -671,44 +668,49 @@ def getaction():
 
     try: 
         if action=='Holiday':
-            get_by_id()
-            return jsonify(reply)
+            print("action is",action)
+            reply = get_by_id()
             
             
 
         if action=='Academic_Calendar':
-            calendar()
-            return jsonify(reply)
+            print("action is",action)
+            reply = calendar()
+            
             
             
             
         if action=='Event':
-            getevents()
-            return jsonify(reply)
+            print("action is",action)
+            reply = getevents()
+            
 
             
             
         if action=='Syllabus':
-            syllabus()
-            return jsonify(reply)
+            print("action is",action)
+            reply = syllabus()
             
             
 
         if action=='Timetable':
-            timet()
-            return jsonify(reply)
+            print("action is",action)
+            reply=timet()
             
 
         if action=='Exams_schedule':
-            schedule()
-            return jsonify(reply)
+            print("action is",action)
+            reply= schedule()
+            
             
 
         
-
     except Exception as e:
-        
-        return(str(e))
+        response =  """                        Response : {0}
+                        """.format("An application error has occured")
+        reply = {"fulfillmentText": response,}
+    finally:    
+        return jsonify(reply)
 
         
 
