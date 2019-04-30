@@ -814,7 +814,7 @@ def getaction():
             return jsonify(reply)
         
 
-        if action=='Syllabus.Syllabus-custom.Syllabus-custom-custom':
+        if action=='Syllabus':
             
             course = req['queryResult']['parameters']['Courses']
             semester = req['queryResult']['parameters']['sem_no']
@@ -855,7 +855,7 @@ def getaction():
 
         if action=='Timetable':
             course = req['queryResult']['parameters']['Courses']
-            semester = req['queryResult']['parameters']['number']
+            semester = req['queryResult']['parameters']['sem_no']
             branch = req['queryResult']['parameters']['Branch']
             timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
             
@@ -891,7 +891,7 @@ def getaction():
 
         if action=='Exams_schedule':
             course = req['queryResult']['parameters']['Courses']
-            semester = req['queryResult']['parameters']['number']
+            semester = req['queryResult']['parameters']['sem_no']
             branch = req['queryResult']['parameters']['Branch']
             schedule=Schedule.query.filter_by(course=course , semester=semester, branch=branch).all()
             
