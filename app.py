@@ -659,10 +659,7 @@ def getaction():
     
     req = request.get_json(silent=True, force=True)
     action = req['queryResult']['parameters']['function']
-    response =  """
-                    Response : {0}
-                    """.format("action is not valid")
-    reply = {"fulfillmentText": response,} 
+    
             
        
 
