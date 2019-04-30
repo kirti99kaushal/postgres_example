@@ -101,7 +101,7 @@ def get_by_id():
                 
                 reply = {"fulfillmentText": response,}
 
-            return jsonify(reply)
+            #return jsonify(reply)
         
     except Exception as e:
         return(str(e))
@@ -264,7 +264,7 @@ def schedule():
                 
                 reply = {"fulfillmentText": response,}
 
-            return jsonify(reply)
+            #return jsonify(reply)
         
         
     except Exception as e:
@@ -504,7 +504,7 @@ def syllabus():
                 
                 reply = {"fulfillmentText": response,}
 
-            return jsonify(reply)
+            
         
         
     except Exception as e:
