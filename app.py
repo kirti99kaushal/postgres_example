@@ -627,7 +627,7 @@ def getevents():
         Result=''
         response=''
         reply= ''
-        for row in events:
+        for row in event:
 
             i = i + 1
             print("print rows", row.id, row.start_date, row.end_date, row.event)
