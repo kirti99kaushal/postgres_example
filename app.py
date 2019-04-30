@@ -225,7 +225,7 @@ def schedule():
     print(req)
     #action = req['queryResult']['parameters']['schedule1']
     course = req['queryResult']['parameters']['Courses']
-    semester = req['queryResult']['parameters']['number']
+    semester = req['queryResult']['parameters']['sem_no']
     branch = req['queryResult']['parameters']['Branch']
     print("action is", action)
     print("course is", course)
@@ -465,7 +465,7 @@ def syllabus():
     print(req)
     #action = req['queryResult']['parameters']['Syllabus']
     course = req['queryResult']['parameters']['Courses']
-    semester = req['queryResult']['parameters']['number']
+    semester = req['queryResult']['parameters']['sem_no']
     branch = req['queryResult']['parameters']['Branch']
     #print("action is", action)
     print("course is", course)
@@ -520,7 +520,7 @@ def timet():
     print(req)
     #action = req['queryResult']['parameters']['function2']
     course = req['queryResult']['parameters']['Courses']
-    semester = req['queryResult']['parameters']['number']
+    semester = req['queryResult']['parameters']['sem_no']
     branch = req['queryResult']['parameters']['Branch']
     #print("action is", action)
     print("course is", course)
