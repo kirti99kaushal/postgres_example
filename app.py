@@ -75,14 +75,13 @@ def get_by_id():
     #action = req['queryResult']['parameters']['function']
     month = req['queryResult']['parameters']['Months']
     print("month is", month)
-    a=date.start_date
-    print(a)
+
     
 
     try: 
 
         
-        holiday=Holiday.query.filter(extract('month',Holiday.start_date) >= datetime.today().month).all()
+        holiday=Holiday.query.filter(extract('month',Holiday.start_date) >= datetime.yesterday().month).all()
             #Event.query.filter(extract('month',Event.start_date) >= datetime.today().month).all()
         print("holiday is", holiday)
             
