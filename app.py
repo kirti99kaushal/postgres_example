@@ -101,20 +101,28 @@ def get_by_id():
 
             i = i + 1
             print("print rows", row.id, row.start_date, row.end_date, row.event)
+
             if start_date==end_date:
                 Result= 'There is a holiday in the month of '+ str(month) + ' on' +' '+str(row.start_date) +' '+ 'for the occasion ' + str(row.event) + '  '  
-            
+                print("result is", Result)
+                response = response + """
+                        {0}
+                    
+                        """.format(Result,)
+                
+                reply = {"fulfillmentText": response,}
+
             else:
                 Result= 'There is a holiday in the month of '+ str(month) + ' from' +' '+str(row.start_date)+' ' + 'to'+ ' '+str(row.end_date) +' '+ 'for the occasion ' + str(row.event) + '  '  
            # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
 
-            print("result is", Result)
-            response = response + """
-                    {0}
+                print("result is", Result)
+                response = response + """
+                        {0}
                     
-                    """.format(Result,)
+                        """.format(Result,)
                 
-            reply = {"fulfillmentText": response,}
+                reply = {"fulfillmentText": response,}
 
         return reply
     except Exception as e:
