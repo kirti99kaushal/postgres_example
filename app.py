@@ -706,7 +706,7 @@ def getaction():
                         """.format("An application error has occured")
         reply = {"fulfillmentText": response,}
     finally:    
-        return jsonify(reply)
+        return reply
 
         
 
