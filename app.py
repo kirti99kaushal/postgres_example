@@ -178,9 +178,6 @@ def get_data():
 
 
 
-
-
-
 @app.route("/add/schedule",methods=['GET', 'POST'])
 def add_schedule():
     if request.method == 'POST':
@@ -625,11 +622,12 @@ def getevents():
         Result=''
         response=''
         reply= ''
+        d=datetime.datetime.strptime(start_date, "%d %b %Y  %H:%M:%S.%f")
         for row in event:
 
             i = i + 1
             print("print rows", row.id, row.start_date, row.end_date, row.event)
-            d=datetime.datetime.strptime(start_date, "%d %b %Y  %H:%M:%S.%f")
+            
 
             Result= 'There is an event in the month of '+ str(month) + ' on'+str(d.day) + 'for the occasion ' + str(row.event) + '  '  
            
