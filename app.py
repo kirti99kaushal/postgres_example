@@ -509,11 +509,13 @@ def timet():
     course = req['queryResult']['parameters']['Courses']
     semester = req['queryResult']['parameters']['sem_no']
     branch = req['queryResult']['parameters']['Branch']
+    print("course is",course)
     
    
 
     try: 
         timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
+        print(timetable)
         if(len(timetable)==0):
 
             response =  """
@@ -521,7 +523,7 @@ def timet():
                     
                     """.format("Timetable updation is pending for now. Please check after some time")
             reply = {"fulfillmentText": response}
-                 #print("hi there")
+                 
             return reply
         i = 0
         Result=''
