@@ -1,8 +1,8 @@
 import os
 from flask import Flask,session,redirect, url_for, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-import datetime
+from datetime import date
+
 
 from sqlalchemy import extract
 import calendar
@@ -75,7 +75,7 @@ def get_by_id():
     #action = req['queryResult']['parameters']['function']
     month = req['queryResult']['parameters']['Months']
     print("month is", month)
-    a = Holiday.start_date
+    a=date.start_date
     print(a)
     
 
