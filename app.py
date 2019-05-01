@@ -225,7 +225,7 @@ def schedule():
             
             
         if(len(schedule)==0):
-            
+
             response =  """
                     {0}
                     
@@ -545,7 +545,7 @@ def timet():
                     """.format(Result,)
                 
             reply = {"fulfillmentText": response,}
-        return reply
+        return jsonify(reply)
 
             
     except Exception as e:
