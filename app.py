@@ -624,16 +624,16 @@ def getevents():
         Result=''
         response=''
         reply= ''
-        d=datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
-        day_string = d.strftime('%d')
-        print(day_string)
+        #d=datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
+        #day_string = d.strftime('%d')
+        #print(day_string)
         for row in event:
 
             i = i + 1
             print("print rows", row.id, row.start_date, row.end_date, row.event)
             
 
-            Result= 'There is an event in the month of '+ str(month) + ' on'+str(day_string) + 'for the occasion ' + str(row.event) + '  '  
+            Result= 'There is an event in the month of '+ str(month) + ' from'+str(row.start_date) + 'to'+ str(row.end_date)+'for the occasion ' + str(row.event) + '  '  
            
 
             print("result is", Result)
