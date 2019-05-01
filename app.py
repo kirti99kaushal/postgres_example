@@ -505,13 +505,11 @@ def timet():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
-    print(req)
-    #action = req['queryResult']['parameters']['function2']
+    
     course = req['queryResult']['parameters']['Courses']
     semester = req['queryResult']['parameters']['sem_no']
     branch = req['queryResult']['parameters']['Branch']
-    #print("action is", action)
-    print("course is", course)
+    
    
 
     try: 
@@ -524,7 +522,7 @@ def timet():
                     """.format("Timetable updation is pending for now. Please check after some time")
             reply = {"fulfillmentText": response}
                  #print("hi there")
-            return jsonify(reply)
+            return reply
         i = 0
         Result=''
         response=''
@@ -543,7 +541,7 @@ def timet():
                     """.format(Result,)
                 
             reply = {"fulfillmentText": response,}
-        return reply
+            return reply
 
             
     except Exception as e:
