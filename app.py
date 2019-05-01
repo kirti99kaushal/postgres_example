@@ -676,7 +676,7 @@ def getaction():
 
             
             
-        if action=='Syllabus':
+        if action=='Syllabus.Syllabus-custom':
             print("action is",action)
             reply = syllabus()
             
