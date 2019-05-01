@@ -691,7 +691,7 @@ def getaction():
             
 
         if action=='Exams_schedule.Exams_schedule-custom':
-            print("action is",action)
+            print("action in try is",action)
             reply= schedule()
             
             
