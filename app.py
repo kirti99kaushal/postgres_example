@@ -626,6 +626,7 @@ def getevents():
         reply= ''
         d=datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
         day_string = d.strftime('%d')
+        print(day_string)
         for row in event:
 
             i = i + 1
