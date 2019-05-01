@@ -682,12 +682,12 @@ def getaction():
             
             
 
-        if action=='Timetable':
+        if action=='Timetable.Timetable-custom':
             print("action is",action)
             reply=timet()
             
 
-        if action=='Exams_schedule':
+        if action=='Exams_schedule.Exams_schedule-custom':
             print("action is",action)
             reply= schedule()
             
