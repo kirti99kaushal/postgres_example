@@ -210,8 +210,7 @@ def schedule():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
-    print(req)
-    #action = req['queryResult']['parameters']['schedule1']
+    
     course = req['queryResult']['parameters']['Courses']
     semester = req['queryResult']['parameters']['sem_no']
     branch = req['queryResult']['parameters']['Branch']
@@ -222,7 +221,7 @@ def schedule():
     try: 
         
         schedule=Schedule.query.filter_by(course=course , semester=semester, branch=branch).all()
-            
+        print("hi there")   
             
         if(len(schedule)==0):
 
