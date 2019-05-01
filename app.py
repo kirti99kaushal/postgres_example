@@ -81,7 +81,7 @@ def get_by_id():
     try: 
 
         
-        holiday=Holiday.query.filter(extract('month',Holiday.start_date) >= datetime.yesterday().month).all()
+        holiday=Holiday.query.filter(extract('month',Holiday.start_date) >= date.yesterday().month).all()
             #Event.query.filter(extract('month',Event.start_date) >= datetime.today().month).all()
         print("holiday is", holiday)
             
