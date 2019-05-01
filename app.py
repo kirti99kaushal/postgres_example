@@ -214,7 +214,7 @@ def schedule():
     course = req['queryResult']['parameters']['Courses']
     semester = req['queryResult']['parameters']['sem_no']
     branch = req['queryResult']['parameters']['Branch']
-    print("action is", action)
+    #print("action is", action)
     print("course is", course)
    
 
