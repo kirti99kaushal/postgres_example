@@ -250,7 +250,7 @@ def schedule():
                 
             reply = {"fulfillmentText": response,}
 
-        return jsonify(reply)
+            return jsonify(reply)
         
     except Exception as e:
         return(str(e))
