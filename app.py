@@ -220,38 +220,38 @@ def schedule():
    
 
     try: 
-        #if action=='Exams_schedule':
-            schedule=Schedule.query.filter_by(course=course , semester=semester, branch=branch).all()
+        
+        schedule=Schedule.query.filter_by(course=course , semester=semester, branch=branch).all()
             
             
-            if(len(schedule)==0):
-                 response =  """
-                        {0}
+        if(len(schedule)==0):
+            response =  """
+                    {0}
                     
-                        """.format("Schedule updation is pending for now. Please check after some time")
-                 reply = {"fulfillmentText": response}
+                    """.format("Schedule updation is pending for now. Please check after some time")
+            reply = {"fulfillmentText": response}
                  #print("hi there")
-                 return jsonify(reply)
-            i = 0
-            Result=''
-            response=''
-            reply= ''
-            for row in schedule:
+            return jsonify(reply)
+        i = 0
+        Result=''
+        response=''
+        reply= ''
+        for row in schedule:
 
-                i = i + 1
-                print("print rows", row.date, row.sub_code, row.subject)
+            i = i + 1
+            print("print rows", row.date, row.sub_code, row.subject)
 
-                Result=  str(row.date)+str(row.sub_code)  + str(row.subject) + '  '  
+            Result=  str(row.date)+str(row.sub_code)  + str(row.subject) + '  '  
           
-                print("result is", Result)
-                response = response + """
-                        {0}
+            print("result is", Result)
+            response = response + """
+                    {0}
                     
-                        """.format(Result,)
+                    """.format(Result,)
                 
-                reply = {"fulfillmentText": response,}
+            reply = {"fulfillmentText": response,}
 
-            return reply
+        return reply
         
     except Exception as e:
         return(str(e))
@@ -460,37 +460,38 @@ def syllabus():
    
 
     try: 
-        #if action=='Syllabus':
-            syllabus=Syllabus.query.filter_by(course=course , semester=semester, branch=branch).all()
+        
+        syllabus=Syllabus.query.filter_by(course=course , semester=semester, branch=branch).all()
             
             
-            if(len(syllabus)==0):
-                 response =  """
-                        {0}
+        if(len(syllabus)==0):
+
+            response =  """
+                    {0}
                     
-                        """.format("Syllabus updation is pending for now. Please check after some time")
-                 reply = {"fulfillmentText": response}
+                    """.format("Syllabus updation is pending for now. Please check after some time")
+            reply = {"fulfillmentText": response}
                  #print("hi there")
-                 return jsonify(reply)
-            i = 0
-            Result=''
-            response=''
-            reply= ''
-            for row in syllabus:
+            return jsonify(reply)
+        i = 0
+        Result=''
+        response=''
+        reply= ''
+        for row in syllabus:
 
-                i = i + 1
-                print("print rows", row.date, row.sub_code, row.subject)
+            i = i + 1
+            print("print rows", row.date, row.sub_code, row.subject)
 
-                Result=  str(row.sub_code)+'  '+str(row.subject) +' ' + str(row.units) + '  '  
+            Result=  str(row.sub_code)+'  '+str(row.subject) +' ' + str(row.units) + '  '  
           
-                print("result is", Result)
-                response = response + """
-                        {0}
+            print("result is", Result)
+            response = response + """
+                    {0}
                     
-                        """.format(Result,)
+                    """.format(Result,)
                 
-                reply = {"fulfillmentText": response,}
-            return reply
+            reply = {"fulfillmentText": response,}
+        return reply
 
             
         
