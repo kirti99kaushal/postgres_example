@@ -252,7 +252,7 @@ def schedule():
                 
             reply = {"fulfillmentText": response,}
 
-        return reply
+        return jsonify(reply)
         
     except Exception as e:
         return(str(e))
@@ -545,7 +545,7 @@ def timet():
                     """.format(Result,)
                 
             reply = {"fulfillmentText": response,}
-        return jsonify(reply)
+        return reply
 
             
     except Exception as e:
