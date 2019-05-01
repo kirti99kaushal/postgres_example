@@ -113,7 +113,7 @@ def get_by_id():
                 
             reply = {"fulfillmentText": response,}
 
-            return reply
+        return reply
     except Exception as e:
         return(str(e))
 
@@ -543,7 +543,7 @@ def timet():
                     """.format(Result,)
                 
             reply = {"fulfillmentText": response,}
-            return reply
+        return reply
 
             
     except Exception as e:
