@@ -92,7 +92,7 @@ def get_by_id():
                     """.format("There are no holidays in month of "+ month)
             reply = {"fulfillmentText": response}
             print("hi there")
-            return jsonify(reply)
+            return reply
         i = 0
         Result=''
         response=''
@@ -101,8 +101,10 @@ def get_by_id():
 
             i = i + 1
             print("print rows", row.id, row.start_date, row.end_date, row.event)
-
-            Result= 'There is a holiday in the month of '+ str(month) + ' from' +' '+str(row.start_date)+' ' + 'to'+ ' '+str(row.end_date) +' '+ 'for the occasion ' + str(row.event) + '  '  
+            if start_date==end_date:
+                Result= 'There is a holiday in the month of '+ str(month) + ' on' +' '+str(row.start_date) +' '+ 'for the occasion ' + str(row.event) + '  '  
+            else:
+                Result= 'There is a holiday in the month of '+ str(month) + ' from' +' '+str(row.start_date)+' ' + 'to'+ ' '+str(row.end_date) +' '+ 'for the occasion ' + str(row.event) + '  '  
            # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
 
             print("result is", Result)
@@ -230,7 +232,7 @@ def schedule():
                     """.format("Schedule updation is pending for now. Please check after some time")
             reply = {"fulfillmentText": response}
                  #print("hi there")
-            return jsonify(reply)
+            return reply
         i = 0
         Result=''
         response=''
@@ -417,7 +419,7 @@ def calendar():
                         """.format("No calendar updates")
                  reply = {"fulfillmentText": response}
                  print("hi there")
-                 return jsonify(reply)
+                 return reply
             i = 0
             Result=''
             response=''
@@ -471,7 +473,7 @@ def syllabus():
                     """.format("Syllabus updation is pending for now. Please check after some time")
             reply = {"fulfillmentText": response}
                  #print("hi there")
-            return jsonify(reply)
+            return reply
         i = 0
         Result=''
         response=''
@@ -517,6 +519,7 @@ def timet():
         timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
         print(timetable)
         if(len(timetable)==0):
+
 
             response =  """
                     {0}
@@ -606,7 +609,7 @@ def getevents():
                     """.format("There are no events in month of "+ month)
             reply = {"fulfillmentText": response}
             print("hi there")
-            return jsonify(reply)
+            return reply
             
             
             
