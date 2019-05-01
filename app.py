@@ -225,6 +225,7 @@ def schedule():
             
             
         if(len(schedule)==0):
+            
             response =  """
                     {0}
                     
@@ -518,13 +519,14 @@ def timet():
     try: 
         timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
         if(len(timetable)==0):
-                 response =  """
-                        {0}
+
+            response =  """
+                    {0}
                     
-                        """.format("Timetable updation is pending for now. Please check after some time")
-                 reply = {"fulfillmentText": response}
+                    """.format("Timetable updation is pending for now. Please check after some time")
+            reply = {"fulfillmentText": response}
                  #print("hi there")
-                 return jsonify(reply)
+            return jsonify(reply)
         i = 0
         Result=''
         response=''
@@ -538,7 +540,7 @@ def timet():
           
             print("result is", Result)
             response = response + """
-                       {0}
+                    {0}
                     
                     """.format(Result,)
                 
