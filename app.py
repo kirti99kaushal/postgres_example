@@ -219,7 +219,6 @@ def schedule():
    
 
     try: 
-        
         schedule=Schedule.query.filter_by(course=course , semester=semester, branch=branch).all()
         print("hi there")   
             
