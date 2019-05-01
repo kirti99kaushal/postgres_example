@@ -30,7 +30,7 @@ from models import Event
 def hello():
     return render_template("front.html")
 
-
+#------------------------------------HOLIDAY--------------------------------------------------------
 @app.route("/add/form",methods=['GET', 'POST'])
 def add_book_form():    
     if request.method == 'POST':
@@ -129,7 +129,7 @@ def get_by_id():
         return(str(e))
 
 
-
+#-------------------------------STUDENT INFO---------------------------------------------------------
     
     
 @app.route("/add/studentinfo",methods=['GET', 'POST'])
@@ -178,7 +178,7 @@ def get_data():
 
         return(str(e))
 
-
+#-----------------------------------SCHEDULE-------------------------------------------------------------
 
 @app.route("/add/schedule",methods=['GET', 'POST'])
 def add_schedule():
@@ -266,7 +266,7 @@ def schedule():
     except Exception as e:
         return(str(e))
 
-
+#-------------------------------------TIMETABLE------------------------------------------------------
 
 
 @app.route("/add/timetable",methods=['GET', 'POST'])
@@ -319,6 +319,58 @@ def get_timetable():
         return  jsonify([e.serialize() for e in books])
     except Exception as e:
         return(str(e))
+
+@app.route("/timet",methods=['GET', 'POST'] )
+def timet():
+    print("helloooo")
+
+    req = request.get_json(silent=True, force=True)
+    
+    course = req['queryResult']['parameters']['Courses']
+    semester = req['queryResult']['parameters']['sem_no']
+    branch = req['queryResult']['parameters']['Branch']
+    print("course is",course)
+    
+   
+
+    try: 
+        timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
+        print(timetable)
+        if(len(timetable)==0):
+
+
+            response =  """
+                    {0}
+                    
+                    """.format("Timetable updation is pending for now. Please check after some time")
+            reply = {"fulfillmentText": response}
+                 
+            return reply
+        i = 0
+        Result=''
+        response=''
+        reply= ''
+        for row in timetable:
+
+            i = i + 1
+            print("print rows", row.timing, row.monday, row.tuesday)
+
+            Result=  str(row.timing)+'  '+str(row.monday) +'  ' + str(row.tuesday) + '  ' + str(row.wednesday) + '  ' + str(row.thursday)+ '  ' + str(row.friday) + '  '  + str(row.saturday) + '  '  
+          
+            print("result is", Result)
+            response = response + """
+                    {0}
+                    
+                    """.format(Result,)
+                
+            reply = {"fulfillmentText": response,}
+        return reply
+
+            
+    except Exception as e:
+        return(str(e))
+#---------------------------------------SYLLABUS------------------------------------------------------
+
 @app.route("/gettt")
 def test():
     return render_template("test1.html")
@@ -359,101 +411,6 @@ def get_syllabus():
     except Exception as e:
         return(str(e))
 
-
-@app.route("/add/calendar",methods=['GET', 'POST'])
-def add_calendar():
-    if request.method == 'POST':
-        
-        month=request.form.get('month')
-        date=request.form.get('date')
-        event=request.form.get('event')
-        try:
-            calendar=Calendar(
-    
-                month=month,
-                date=date,
-                event=event
-            )
-            
-            db.session.add(calendar)
-            db.session.commit()
-            print("calendar", calendar)
-            message = "calendar updated. calendar id={}".format(calendar.id)
-            session['message'] = message
-            print("session is",session)
-            return redirect(url_for('get_cal'))
-            #return render_template("list.html",calendar = calendar)
-
-            
-        except Exception as e:
-            return(str(e))
-    return render_template("calendar.html")
-
-@app.route("/getcal")
-def get_cal():
-    try:
-        
-        calendar=Calendar.query.all()
-        #print("message value was previously set to:" +session['message'])
-        message = session['message']
-        session['message'] = ''
-        return render_template("list.html",calendar = calendar,message =message)
-
-        return  jsonify([e.serialize() for e in books])
-    except Exception as e:
-        return(str(e))
-
-@app.route("/calendar",methods=['GET', 'POST'] )
-def calendar():
-    print("helloooo")
-
-    req = request.get_json(silent=True, force=True)
-    #action = req['queryResult']['parameters']['function2']
-    #month = req['queryResult']['parameters']['Months']
-    #print("action is", action)
-    
-    try: 
-        #if action=='Academic_Calendar':
-            calendar=Calendar.query.all()
-            print(calendar)
-            
-
-            #print("Month is",row.month)
-            #print("Date is",holiday.date)
-            #print("Event is",holiday.event)
-            if(len(calendar)==0):
-                 response =  """
-                        {0}
-                    
-                        """.format("No calendar updates")
-                 reply = {"fulfillmentText": response}
-                 print("hi there")
-                 return reply
-            i = 0
-            Result=''
-            response=''
-            reply= ''
-            for row in calendar:
-
-                i = i + 1
-                print("print rows", row.id, row.month, row.date, row.event)
-
-                Result=  str(row.month) +str(row.date)  + str(row.event) + '  '  
-           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
-
-                print("result is", Result)
-                response = response + """
-                        {0}
-                    
-                        """.format(Result,)
-                
-                reply = {"fulfillmentText": response,}
-            return reply
-
-            
-        
-    except Exception as e:
-        return(str(e))
 
 @app.route("/syllabus",methods=['GET', 'POST'] )
 def syllabus():
@@ -509,57 +466,99 @@ def syllabus():
     except Exception as e:
         return(str(e))
 
+#------------------------------------CALENDAR-----------------------------------------------------------
+@app.route("/add/calendar",methods=['GET', 'POST'])
+def add_calendar():
+    if request.method == 'POST':
+        
+        month=request.form.get('month')
+        date=request.form.get('date')
+        event=request.form.get('event')
+        try:
+            calendar=Calendar(
+    
+                month=month,
+                date=date,
+                event=event
+            )
+            
+            db.session.add(calendar)
+            db.session.commit()
+            print("calendar", calendar)
+            message = "calendar updated. calendar id={}".format(calendar.id)
+            session['message'] = message
+            print("session is",session)
+            return redirect(url_for('get_cal'))
+            #return render_template("list.html",calendar = calendar)
 
+            
+        except Exception as e:
+            return(str(e))
+    return render_template("calendar.html")
 
-@app.route("/timet",methods=['GET', 'POST'] )
-def timet():
+@app.route("/getcal")
+def get_cal():
+    try:
+        
+        calendar=Calendar.query.all()
+        #print("message value was previously set to:" +session['message'])
+        message = session['message']
+        session['message'] = ''
+        return render_template("list.html",calendar = calendar,message =message)
+
+        return  jsonify([e.serialize() for e in books])
+    except Exception as e:
+        return(str(e))
+
+@app.route("/calendar",methods=['GET', 'POST'] )
+def calendar():
     print("helloooo")
 
     req = request.get_json(silent=True, force=True)
     
-    course = req['queryResult']['parameters']['Courses']
-    semester = req['queryResult']['parameters']['sem_no']
-    branch = req['queryResult']['parameters']['Branch']
-    print("course is",course)
-    
-   
-
     try: 
-        timetable=Timetable.query.filter_by(course=course , semester=semester, branch=branch).all()
-        print(timetable)
-        if(len(timetable)==0):
-
-
-            response =  """
-                    {0}
+        
+            calendar=Calendar.query.all()
+            print(calendar)
+            
+            if(len(calendar)==0):
+                 response =  """
+                        {0}
                     
-                    """.format("Timetable updation is pending for now. Please check after some time")
-            reply = {"fulfillmentText": response}
-                 
-            return reply
-        i = 0
-        Result=''
-        response=''
-        reply= ''
-        for row in timetable:
+                        """.format("No calendar updates")
+                 reply = {"fulfillmentText": response}
+                 print("hi there")
+                 return reply
+            i = 0
+            Result=''
+            response=''
+            reply= ''
+            for row in calendar:
 
-            i = i + 1
-            print("print rows", row.timing, row.monday, row.tuesday)
+                i = i + 1
+                print("print rows", row.id, row.month, row.date, row.event)
 
-            Result=  str(row.timing)+'  '+str(row.monday) +'  ' + str(row.tuesday) + '  ' + str(row.wednesday) + '  ' + str(row.thursday)+ '  ' + str(row.friday) + '  '  + str(row.saturday) + '  '  
-          
-            print("result is", Result)
-            response = response + """
-                    {0}
+                Result=  str(row.month) +str(row.date)  + str(row.event) + '  '  
+           # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
+
+                print("result is", Result)
+                response = response + """
+                        {0}
                     
-                    """.format(Result,)
+                        """.format(Result,)
                 
-            reply = {"fulfillmentText": response,}
+                reply = {"fulfillmentText": response,}
             return reply
 
             
+        
     except Exception as e:
         return(str(e))
+
+#----------------------------------------EVENT-------------------------------------------------------------
+
+
+
 
 @app.route("/add/event",methods=['GET', 'POST'])
 def add_event():
