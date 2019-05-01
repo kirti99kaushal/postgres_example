@@ -656,7 +656,7 @@ def getaction():
     
     
     req = request.get_json(silent=True, force=True)
-    action = req['queryResult']['parameters']['function']
+    action = req['queryResult']['outputContexts']['parameters']['function']
     
             
        
