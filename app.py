@@ -1,7 +1,7 @@
 import os
 from flask import Flask,session,redirect, url_for, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-from datetime import date
+from datetime import datetime
 
 
 from sqlalchemy import extract
@@ -81,7 +81,7 @@ def get_by_id():
     try: 
 
         
-        holiday=Holiday.query.filter(extract('month',Holiday.start_date) >= date.yesterday().month).all()
+        holiday=Holiday.query.filter(extract('month',Holiday.start_date) >= datetime.today().month).all()
             #Event.query.filter(extract('month',Event.start_date) >= datetime.today().month).all()
         print("holiday is", holiday)
             
