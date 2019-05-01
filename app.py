@@ -30,22 +30,30 @@ from models import Event
 def hello():
     return render_template("front.html")
 
-@app.route("/add")
-def add_holiday():
-    month=request.args.get('month')
-    date=request.args.get('date')
-    event=request.args.get('event')
-    try:
-        holiday=Holiday(
-            month=month,
-            date=date,
-            event=event
-        )
-        db.session.add(holiday)
-        db.session.commit()
-        return "Holiday added. holiday id={}".format(holiday.id)
-    except Exception as e:
-	    return(str(e))
+
+@app.route("/add/form",methods=['GET', 'POST'])
+def add_book_form():    
+    if request.method == 'POST':
+        start_date=request.form.get('start_date')
+        end_date=request.form.get('end_date')
+        event=request.form.get('event')
+        try:
+            holiday=Holiday(
+        
+                start_date=start_date,
+                end_date=end_date,
+                event=event
+            )
+                
+            db.session.add(holiday)
+            db.session.commit()
+            return "Holiday added. holiday id={}".format(holiday.id)
+        except Exception as e:
+
+            return(str(e))
+    return render_template("getdata.html")
+
+
         
 @app.route("/getall")
 def get_all():
@@ -109,27 +117,6 @@ def get_by_id():
 
 
 
-@app.route("/add/form",methods=['GET', 'POST'])
-def add_book_form():    
-    if request.method == 'POST':
-        start_date=request.form.get('start_date')
-        end_date=request.form.get('end_date')
-        event=request.form.get('event')
-        try:
-            holiday=Holiday(
-        
-                start_date=start_date,
-                end_date=end_date,
-                event=event
-            )
-                
-            db.session.add(holiday)
-            db.session.commit()
-            return "Holiday added. holiday id={}".format(holiday.id)
-        except Exception as e:
-
-            return(str(e))
-    return render_template("getdata.html")
     
     
 @app.route("/add/studentinfo",methods=['GET', 'POST'])
