@@ -519,9 +519,9 @@ def timet():
     req = request.get_json(silent=True, force=True)
     print(req)
     #action = req['queryResult']['parameters']['function2']
-    course = req['queryResult']['parameters']['Courses']
-    semester = req['queryResult']['parameters']['sem_no']
-    branch = req['queryResult']['parameters']['Branch']
+    course = req['queryResult']['outputContexts']['parameters']['Courses']
+    semester = req['queryResult']['outputContexts']['parameters']['sem_no']
+    branch = req['queryResult']['outputContexts']['parameters']['Branch']
     #print("action is", action)
     print("course is", course)
    
