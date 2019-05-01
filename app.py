@@ -77,7 +77,7 @@ def get_by_id():
     
 
     try: 
-        #if action=='Holiday':
+        
             holiday=Holiday.query.filter(extract('month',Holiday.start_date) >= datetime.today().month).all()
             #Event.query.filter(extract('month',Event.start_date) >= datetime.today().month).all()
             print("holiday is", holiday)
@@ -111,7 +111,7 @@ def get_by_id():
                 
                 reply = {"fulfillmentText": response,}
 
-            return reply
+                return reply
     except Exception as e:
         return(str(e))
 
