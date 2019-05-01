@@ -607,7 +607,7 @@ def getevents():
 
     try: 
 
-        event=Event.query.filter_by(start_date = month).all()
+        event=Event.query.filter(extract('month',Event.start_date) >= datetime.today().month).all()
         print("Event is", event)
         if(len(event)==0):
 
@@ -629,8 +629,9 @@ def getevents():
 
             i = i + 1
             print("print rows", row.id, row.start_date, row.end_date, row.event)
+            d=datetime.datetime.strptime(start_date, "%d %b %Y  %H:%M:%S.%f")
 
-            Result= 'There is an event in the month of '+ str(month) + ' on'+str(row.start_date) + 'for the occasion ' + str(row.event) + '  '  
+            Result= 'There is an event in the month of '+ str(month) + ' on'+str(d.day) + 'for the occasion ' + str(row.event) + '  '  
            
 
             print("result is", Result)
