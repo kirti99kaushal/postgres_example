@@ -73,45 +73,47 @@ def get_by_id():
     req = request.get_json(silent=True, force=True)
     #action = req['queryResult']['parameters']['function']
     month = req['queryResult']['parameters']['Months']
-    print("action is", action)
+    print("month is", month)
     
 
     try: 
+
         
-            holiday=Holiday.query.filter(extract('month',Holiday.start_date) >= datetime.today().month).all()
+        holiday=Holiday.query.filter(extract('month',Holiday.start_date) >= datetime.today().month).all()
             #Event.query.filter(extract('month',Event.start_date) >= datetime.today().month).all()
-            print("holiday is", holiday)
+        print("holiday is", holiday)
             
             
-            if(len(holiday)==0):
-                 response =  """
-                        {0}
+        if(len(holiday)==0):
+
+            response =  """
+                    {0}
                     
-                        """.format("There are no holidays in month of "+ month)
-                 reply = {"fulfillmentText": response}
-                 print("hi there")
-                 return jsonify(reply)
-            i = 0
-            Result=''
-            response=''
-            reply= ''
-            for row in holiday:
+                    """.format("There are no holidays in month of "+ month)
+            reply = {"fulfillmentText": response}
+            print("hi there")
+            return jsonify(reply)
+        i = 0
+        Result=''
+        response=''
+        reply= ''
+        for row in holiday:
 
-                i = i + 1
-                print("print rows", row.id, row.start_date, row.end_date, row.event)
+            i = i + 1
+            print("print rows", row.id, row.start_date, row.end_date, row.event)
 
-                Result= 'There is a holiday in the month of '+ str(month) + ' on'+str(row.start_date) + 'for the occasion ' + str(row.event) + '  '  
+            Result= 'There is a holiday in the month of '+ str(month) + ' on'+str(row.start_date) + 'for the occasion ' + str(row.event) + '  '  
            # Result= 'Dear candidate there is one holiday in the month of {0}'.format(holiday.month)
 
-                print("result is", Result)
-                response = response + """
-                        {0}
+            print("result is", Result)
+            response = response + """
+                    {0}
                     
-                        """.format(Result,)
+                    """.format(Result,)
                 
-                reply = {"fulfillmentText": response,}
+            reply = {"fulfillmentText": response,}
 
-                return reply
+            return reply
     except Exception as e:
         return(str(e))
 
