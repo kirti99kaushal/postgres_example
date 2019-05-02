@@ -1,7 +1,7 @@
 import os
 from flask import Flask,session,redirect, url_for, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import date
 
 
 from sqlalchemy import extract
@@ -74,6 +74,7 @@ def get_by_id():
     req = request.get_json(silent=True, force=True)
     #action = req['queryResult']['parameters']['function']
     month = req['queryResult']['parameters']['Months']
+
     print("month is", month)
 
     
