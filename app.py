@@ -597,7 +597,7 @@ def getevents():
 
     try: 
 
-        event=Event.query.filter(extract('month',Event.start_date) >= datetime.today().month).all()
+        event=Event.query.filter(extract('month',Event.start_date) == month).all()
         print("Event is", event)
         if(len(event)==0):
 
