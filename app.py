@@ -642,9 +642,7 @@ def getevents():
     except Exception as e:
         return(str(e))
 
-
-@app.route("/find/song",methods=['GET', 'POST'] )
-def find_song():
+def find_song(req):
         req = request.get_json(silent=True, force=True)
     
         month = req['queryResult']['parameters']['Months']
@@ -742,7 +740,7 @@ def getaction():
             
         if action=='Event':
             print("action is",action)
-            reply = find_song()
+            reply = getevents()
             #return jsonify(reply)
             
 
