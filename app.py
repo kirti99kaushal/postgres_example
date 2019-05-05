@@ -642,6 +642,76 @@ def getevents():
     except Exception as e:
         return(str(e))
 
+
+@app.route("/find/song",methods=['GET', 'POST'] )
+def find_song():
+        req = request.get_json(silent=True, force=True)
+    
+        month = req['queryResult']['parameters']['Months']
+
+        my_result = {
+            "fulfillmentText": "This is a text response",
+            "fulfillmentMessages": [
+                {
+                    "card": {
+                        "title": "card title",
+                        "subtitle": "card text",
+                        "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                        "buttons": [
+                            {
+                                "text": "button text",
+                                "postback": "https://assistant.google.com/"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "source": "example.com",
+            "payload": {
+                "google": {
+                    "expectUserResponse": False,
+                    "richResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "Sure, Let's get your song playing"
+                                }
+                            },
+                            {
+                                "mediaResponse": {
+                                        "mediaType": "AUDIO",
+                                        "mediaObjects": [
+                                        {
+                                                "name": "Exercises",
+                                                        "description": "ex",
+                                                        "largeImage": {
+                                                        "url": "http://storage.googleapis.com/automotive-media/album_art.jpg",
+                                                        "accessibilityText": "..."
+                                                        },
+                                                "contentUrl": song_url
+                                        }
+                                        ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "facebook": {
+                    "text": "Hello, Facebook!"
+                },
+                "slack": {
+                    "text": "This is a text response for Slack."
+                }
+            }
+        }
+
+
+
+        res = json.dumps(my_result, indent=4)
+        print(res)
+        r = make_response(res)
+        return r
+
         
 
 @app.route("/action",methods=['GET', 'POST'] )
@@ -672,7 +742,7 @@ def getaction():
             
         if action=='Event':
             print("action is",action)
-            reply = getevents()
+            reply = find_song()
             #return jsonify(reply)
             
 
