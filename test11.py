@@ -14,6 +14,7 @@ def assistant():
 def find_song_and_play(req):
         song_name = req.get("queryResult").get("parameters").get("songname")
         song_url = search_song_url(song_name)
+        reply=""
         my_result = {
             "fulfillmentText": "This is a text response",
             "fulfillmentMessages": [
