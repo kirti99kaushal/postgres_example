@@ -788,9 +788,14 @@ def assistant():
                     "card": {
                         "title": "Holiday no 1 26 january",
                         "subtitle": "",
+
                         
                         
-                    }
+                    },
+                    "card": {
+                        "title": "Holiday no 2 26 january",
+                        "subtitle": "",
+                        }
                 }
             ],
             "source": "example.com",
