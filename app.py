@@ -776,13 +776,8 @@ def getaction():
 
 @app.route("/api/v1/assistant", methods=['POST'])
 def assistant():
-    req = request.get_json(silent=True, force=True)
-    print("Request:")
-    if req["queryResult"]["action"] == "FindSong":
-            return(find_song_and_play(req))
-
-def find_song_and_play(req):
-        song_name = req.get("queryResult").get("parameters").get("songname")
+        #song_name = req.get("queryResult").get("parameters").get("songname")
+        song_name = "lean on"
         #song_url = search_song_url(song_name)
         song_url = "https://api.anyaudio.in/api/v1/search?q="
         reply=""
