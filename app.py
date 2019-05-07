@@ -849,19 +849,6 @@ def find_song_and_play(req):
         r = make_response(res)
         return r
 
-def search_song_url(song_name):
-        search_api = "https://api.anyaudio.in"
-        song_search_url = "https://api.anyaudio.in/api/v1/search?q="
-        song_name = song_name.replace(" ", "+")
-        song_search_url = song_search_url + song_name
-        search_response = requests.get(song_search_url)
-        if search_response.status_code == 200:
-                search_results = json.loads(search_response.content)
-                song_stream_url = search_api + search_results['results'][0]['stream_url']
-                stream_url_response = requests.get(song_stream_url)
-                stream_url = json.loads(stream_url_response.content)
-                song_url = search_api + stream_url['url']        
-                return song_url
 
         
 
