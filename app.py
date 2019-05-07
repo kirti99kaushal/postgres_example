@@ -791,11 +791,16 @@ def assistant():
 
                         
                         
-                    },
+                    }
+                },
+                {
                     "card": {
-                        "title": "Holiday no 2 26 january",
+                        "title": "Holiday no 1 26 january",
                         "subtitle": "",
-                        }
+
+                        
+                        
+                    }
                 }
             ],
             "source": "example.com",
