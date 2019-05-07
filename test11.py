@@ -2,7 +2,7 @@ import traceback
 import requests
 import flask
 from flask import json, jsonify, request, render_template, url_for, Response, make_response
-from sentimeter import app, logger
+#from sentimeter import app, logger
 
 @app.route('/api/v1/assistant', methods=['POST'])
 def assistant():
