@@ -595,7 +595,7 @@ def getevents():
     #action = req['queryResult']['parameters']['function']
     month = req['queryResult']['parameters']['Months']
 
-    #print("action is", action)
+    print("action is")
     
 
     try: 
